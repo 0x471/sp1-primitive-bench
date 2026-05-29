@@ -1,0 +1,17 @@
+[workspace]
+resolver = "2"
+members = ["program", "host"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+
+# SP1 v6 precompile activation. The program imports unmodified sha2,
+# tiny-keccak, k256, curve25519-dalek; these patched forks route the relevant
+# primitives to the SP1 syscall.
+[patch.crates-io]
+sha2 = { git = "https://github.com/sp1-patches/RustCrypto-hashes", package = "sha2", tag = "patch-sha2-0.10.9-sp1-6.0.0" }
+tiny-keccak = { git = "https://github.com/sp1-patches/tiny-keccak", tag = "patch-2.0.2-sp1-6.0.0" }
+k256 = { git = "https://github.com/sp1-patches/elliptic-curves", package = "k256", tag = "patch-k256-13.4-sp1-6.0.0" }
+curve25519-dalek = { git = "https://github.com/sp1-patches/curve25519-dalek", tag = "patch-4.1.3-sp1-6.0.0" }

@@ -1,0 +1,23 @@
+[package]
+name = "bench-host"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+sp1-sdk = "~6.2"
+sp1-build = "~6.2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+
+serde = { version = "1", features = ["derive"] }
+
+# Test-vector generation. Unpatched; runs natively, not in the zkVM.
+sha2 = { version = "0.10" }
+ed25519-dalek = { version = "2.1", features = ["rand_core"] }
+k256 = { version = "0.13", features = ["ecdsa"] }
+rand = "0.8"
+
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+
+[build-dependencies]
+sp1-build = "~6.2"
